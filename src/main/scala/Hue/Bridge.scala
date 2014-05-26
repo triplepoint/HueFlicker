@@ -18,6 +18,32 @@ object Bridge {
 class Bridge(val info: BridgeInformation, val username: String) {
   val httpWrapper = new HttpWrapper("http://" + info.internalipaddress)
 
+  object lights {
+    def getAllLights() = {}
+    def getNewLights() = {}
+    def searchForNewLights() = {}
+    def getLightAttributesAndState() = {}
+    def setLightAttributes() = {}
+    def setLightState() = {}
+  }
+
+  object groups {
+    def getAllGroups() = {}
+    def createGroup() = {}
+    def getGroupAttributes() = {}
+    def SetGroupAttributes() = {}
+    def setGroupState() = {}
+    def deleteGroup() = {}
+  }
+
+  object schedules {
+    def getAllSchedules() = {}
+    def createSchedule() = {}
+    def getScheduleAttributes() = {}
+    def setScheduleAttributes() = {}
+    def deleteSchedule() = {}
+  }
+
   object configuration {
     def createNewUser() = {
       val payload = s"""{"devicetype":"test user","username":"$username"}"""

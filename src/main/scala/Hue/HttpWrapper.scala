@@ -39,7 +39,7 @@ class HttpWrapper(domain: String) {
       case None    => (json \\ "success").extractOpt[T] match {
         case Some(x) => x
         case None    => (json \\ "error").extractOpt[ErrorDescription] match {
-          case Some(x) => throw new RuntimeException("API Error:" + x.description)
+          case Some(x) => throw new RuntimeException("API Error: " + x.description)
           case None    => throw new RuntimeException("API response content did not parse")
         }
       }
