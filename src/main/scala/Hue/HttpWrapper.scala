@@ -7,24 +7,26 @@ import org.json4s.native.JsonMethods._
 case class ErrorDescription(`type`: Int, address: String, description: String)
 
 class HttpWrapper(domain: String) {
+
+  // This is necessary, for the JSON4s decoding below
   implicit val formats = DefaultFormats
 
-  def get[T](route: String)(implicit man: Manifest[T]) =
+  def get[T: Manifest](route: String) =
     makeRequestandExtractResponse(Http(getApiRouteUrl(route)).method("GET"))
 
-  def post[T](route: String, data: String)(implicit man: Manifest[T]) =
+  def post[T: Manifest](route: String, data: String) =
     makeRequestandExtractResponse(Http.postData(getApiRouteUrl(route), data))
 
-  def put[T](route: String, data: String)(implicit man: Manifest[T]) =
+  def put[T: Manifest](route: String, data: String) =
     makeRequestandExtractResponse(Http.postData(getApiRouteUrl(route), data).method("PUT"))
 
-  def delete[T](route: String)(implicit man: Manifest[T]) =
+  def delete[T: Manifest](route: String) =
     makeRequestandExtractResponse(Http(getApiRouteUrl(route)).method("DELETE"))
 
   protected def getApiRouteUrl(route: String) =
     s"$domain/api/$route".stripSuffix("/")
 
-  protected def makeRequestandExtractResponse[T](request: Http.Request)(implicit man: Manifest[T]): T = {
+  protected def makeRequestandExtractResponse[T: Manifest](request: Http.Request) = {
     val responseBody = request
       .option(HttpOptions.connTimeout(1000))
       .option(HttpOptions.readTimeout(5000))
