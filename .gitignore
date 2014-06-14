@@ -59,7 +59,7 @@ out/
 
 
 #############
-## Windows detritus
+## OS Detritus
 #############
 
 # Windows image file caches
@@ -90,7 +90,6 @@ project/boot/
 .cache
 
 
-
 ####################
 ## Scala
 ####################
@@ -111,3 +110,31 @@ project/plugins/project/
 # Scala-IDE specific
 .scala_dependencies
 .worksheet
+
+
+####################
+## Python compiled files
+####################
+*.py[co]
+
+
+####################
+## PHP Composer files
+####################
+/composer.phar
+/composer.lock
+/vendor/
+
+
+####################
+## Sass
+## From https://github.com/github/gitignore
+## SASS Ignores - "Sassy CSS" http://sass-lang.com/
+####################
+*.sass-cache
+
+
+####################
+## Vagrant Files
+####################
+.vagrant/
