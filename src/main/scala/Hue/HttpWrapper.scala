@@ -17,7 +17,7 @@ class HttpWrapper(domain: String) {
     makeRequestandExtractResponse(Http(getApiRouteUrl(route)).method("DELETE"))
 
   protected def getApiRouteUrl(route: String) =
-    s"$domain/api/$route".stripSuffix("/")
+    s"$domain$route".stripSuffix("/")
 
   protected def makeRequestandExtractResponse(request: Http.Request) =
     request

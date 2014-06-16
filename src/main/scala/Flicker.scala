@@ -1,9 +1,12 @@
 import Hue._
+import Hue.Models._
 
 object Flicker extends App {
-  val bridge = Bridge("triplepoint")
-  println("bridge information: ", bridge.info)
+  val user = User("triplepoint", "test user")
+  val bridge = Bridge(user)
+  //println("bridge information: ", bridge.info)
 
-  val createUserResponse = bridge.configuration.createNewUser()
-  println(createUserResponse)
+  //val response = bridge.configuration.createNewUser()
+  val response = bridge.configuration.getFullState()
+  println(response)
 }
